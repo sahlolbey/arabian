@@ -25,8 +25,7 @@ public class AccountServiceImp implements AccountService{
     @Autowired
     AccountRepository accountRepository;
 
-    @Transactional(isolation = Isolation.SERIALIZABLE,propagation =
-            Propagation.REQUIRES_NEW,timeout = 1000)
+
     public Integer transfer(String requesterId , Account source ,
                             Account destination ,
                             Double amount) {
@@ -40,7 +39,9 @@ public class AccountServiceImp implements AccountService{
                 if (destOpt.isPresent ()) {
                     source = sourceOpt.get ();
                     destination = destOpt.get ();
-                    result = doTransfer (source , destination , amount);
+                    source.decreaseBalance (amount);
+                    destination.addBalance (amount);
+                    result = 1;
                     accountRepository.save (source);
                     accountRepository.save (destination);
                 }
@@ -53,15 +54,8 @@ public class AccountServiceImp implements AccountService{
         }
         return result;
     }
-    private Integer doTransfer(Account source ,
-                               Account destination ,
-                               Double amount) throws NotEnoughBalanceException {
-        source.decreaseBalance (amount);
-        destination.addBalance (amount);
-        return 1;
-    }
-    @Transactional(isolation = Isolation.READ_COMMITTED,propagation =
-            Propagation.REQUIRES_NEW,timeout = 1000)
+
+
     public Optional<Account> getAccount(Account account){
         log.info ("getAccount method called");
         Optional<Account> accountOpt = accountRepository.findById (account.getAccountNum ());

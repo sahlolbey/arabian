@@ -20,8 +20,7 @@ public interface AccountService {
     public Integer transfer(String requesterId , Account source ,
                             Account destination ,
                             Double amount);
-    @Transactional(isolation = Isolation.READ_COMMITTED,propagation =
-            Propagation.REQUIRES_NEW,timeout = 1000)
+
     public Optional<Account> getAccount(Account account);
 
 }
