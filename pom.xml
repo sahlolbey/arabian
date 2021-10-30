@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.fsp</groupId>
 	<artifactId>arabian</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>arabian</name>
 	<description>Dubai Bank Test</description>
 	<properties>
@@ -40,19 +40,7 @@
 			<scope>runtime</scope>
 		</dependency>
 
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
-			<scope>test</scope>
-		</dependency>
 
-		<!-- Concurrent JUnit -->
-		<dependency>
-			<groupId>com.vmlens</groupId>
-			<artifactId>concurrent-junit</artifactId>
-			<version>1.0.0</version>
-		</dependency>
 	</dependencies>
 
 	<build>
