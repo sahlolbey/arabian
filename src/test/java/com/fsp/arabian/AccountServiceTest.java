@@ -42,14 +42,14 @@ public class AccountServiceTest {
     public void testTransferInvalidAccounts(){
         Account source = new Account(654321L);
         Account dest = new Account (1234L);
-        int result = accountService.transfer ("1234",source,dest,1000.25);
+        int result = accountService.transfer (source,dest,1000.25);
         assertEquals (-1,result);
     }
     @Test
     public void testTransferNotEnoughBalance(){
         Account a1234 = new Account (1234L);
         Account a1235 = new Account (1235L);
-        int result=accountService.transfer ("1234" , a1234 ,
+        int result=accountService.transfer (a1234 ,
                 a1235 , 11000.00);
         assertEquals (0,result);
         a1234 = accountService.getAccount (a1234).get ();
@@ -106,7 +106,7 @@ public class AccountServiceTest {
             boolean done=false;
             while (!done && count<=failCount) {
                 try {
-                     int result=accountService.transfer ("1234" , source ,
+                     int result=accountService.transfer (source ,
                             destination , amount);
                      if(result == 1) done = true;
                 } catch (Exception e) {
