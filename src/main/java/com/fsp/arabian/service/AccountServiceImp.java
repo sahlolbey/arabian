@@ -26,7 +26,7 @@ public class AccountServiceImp implements AccountService{
     AccountRepository accountRepository;
 
 
-    public Integer transfer(String requesterId , Account source ,
+    public Integer transfer(Account source ,
                             Account destination ,
                             Double amount) {
         Integer result = -1;
