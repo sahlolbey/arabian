@@ -17,7 +17,7 @@ import java.util.Optional;
 public interface AccountService {
     @Transactional(isolation = Isolation.SERIALIZABLE,propagation =
             Propagation.REQUIRES_NEW,timeout = 1000)
-    public Integer transfer(String requesterId , Account source ,
+    public Integer transfer(Account source ,
                             Account destination ,
                             Double amount);
 
